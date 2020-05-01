@@ -38,12 +38,14 @@
                   <p>Créer</p>
                 </a>
               </li>
+
               <li class="nav-item">
-                <a href="pages/layout/collapsed-sidebar.html" class="nav-link active">
+              <a href="{{route('newsletters.index')}}" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Lister</p>
                 </a>
               </li>
+
             </ul>
           </li>
 
