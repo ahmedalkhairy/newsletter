@@ -24,9 +24,9 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-              'title' => "required|unique:mails,title",
-                'content' => "required",
-                'newsletter_id' => "required|exists:newsletters,id"
+            'title' => "required|unique:mails,title",
+            'content' => "required",
+            'newsletter_id' => "required|exists:newsletters,id"
         ];
     }
 }

@@ -20,6 +20,9 @@ class MailManagementTest extends TestCase
      */
     public function test_mail_can_be_created()
     {
+
+
+
         $newsletter = factory(Newsletter::class)->create();
 
         $user = $this->actingAs(factory(User::class)->create());
@@ -121,6 +124,7 @@ class MailManagementTest extends TestCase
     public function mail_can_be_updated()
     {
 
+
         $user = $this->actingAs(factory(User::class)->create());
 
         $this->withoutExceptionHandling();
@@ -196,7 +200,7 @@ class MailManagementTest extends TestCase
             'newsletter_id' => $newsletterId
         ]);
 
-      
+
 
         $response = $user->patch("mails/$mail->id", [
             'title' => 'mails_1',

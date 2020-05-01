@@ -22,10 +22,9 @@ class NewsletterDataTable extends DataTable
         return datatables()
             ->eloquent($query)
             ->addColumn('action', 'dashboard.cruds.newsletter.action')
-            ->addColumn('NumberOfMails' , function($newsletter){
+            ->addColumn('NumberOfMails', function ($newsletter) {
 
                 return $newsletter->mails()->count();
-
             });
     }
 
@@ -48,13 +47,13 @@ class NewsletterDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('newsletter-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    ->dom('lBfrtip')
-                    ->orderBy(1);
-    }
+            ->setTableId('newsletter-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            ->dom('lBfrtip')
+            ->orderBy(1);
 
+    }
     /**
      * Get columns.
      *
@@ -65,16 +64,15 @@ class NewsletterDataTable extends DataTable
         return [
 
             Column::make('id')->title('ID'),
-            Column::make('name')->title('Nom'),
-            // Column::make('description'),
+            Column::make('name'),
             Column::make('active'),
-            Column::make('NumberOfMails')->title("Number Of Mails"),
+            Column::make('NumberOfMails')->title("Mails"),
             Column::make('created_at'),
             Column::make('updated_at'),
             Column::computed('action')
-            ->exportable(false)
-            ->printable(false)
-            ->addClass('text-center')
+                ->exportable(false)
+                ->printable(false)
+                ->addClass('text-center')
 
         ];
     }

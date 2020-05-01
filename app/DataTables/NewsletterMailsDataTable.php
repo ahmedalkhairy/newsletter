@@ -15,9 +15,12 @@ class NewsletterMailsDataTable extends DataTable
 
     private $newsletterId;
 
-    public function __construct($newsletterId)
+
+    public function setNewsletterId($newsletterId)
     {
         $this->newsletterId =$newsletterId;
+
+        return $this;
     }
 
     /**
@@ -57,7 +60,7 @@ class NewsletterMailsDataTable extends DataTable
                     ->minifiedAjax()
                     ->dom('lBfrtip')
                     ->orderBy(1);
-                    
+
     }
 
     /**
@@ -71,7 +74,7 @@ class NewsletterMailsDataTable extends DataTable
         // title
         // content
         return [
-        
+
             Column::make('id'),
             Column::make('title'),
             // Column::make('content'),

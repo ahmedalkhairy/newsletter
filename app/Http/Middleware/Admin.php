@@ -16,8 +16,8 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        
-        abort_unless(auth()->user()->role=="1" , Response::HTTP_UNAUTHORIZED);
+
+        abort_unless(auth()->user()->role=="1" , Response::HTTP_FORBIDDEN);
 
         return $next($request);
     }

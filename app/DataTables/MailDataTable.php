@@ -34,7 +34,11 @@ class MailDataTable extends DataTable
     public function query(Mail $model)
     {
         return $model->newQuery()->with('newsletter');
+
+
     }
+
+
 
     /**
      * Optional method if you want to use html builder.
@@ -59,9 +63,10 @@ class MailDataTable extends DataTable
      */
     protected function getColumns()
     {
+
         return [
             Column::make('id')->title('ID'),
-            Column::make('title'),
+            Column::make('title')->title('titre'),
             Column::make('newsletter.name')->title('Newsletter'),
             Column::make('created_at'),
             Column::make('updated_at'),

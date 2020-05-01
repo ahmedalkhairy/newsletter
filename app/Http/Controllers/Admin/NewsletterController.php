@@ -9,6 +9,7 @@ use App\Newsletter;
 use App\Http\Requests\Newsletter\UpdateRequest;
 use App\Http\Requests\Newsletter\StoreRequest;
 use App\Http\Controllers\Controller;
+use Yajra\DataTables\DataTables;
 
 class NewsletterController extends Controller
 {
@@ -23,8 +24,9 @@ class NewsletterController extends Controller
         $title = "Liste des newsletters";
 
 
+        return $datatable->render('dashboard.cruds.index' , compact('title'));
 
-        return  $datatable->render('dashboard.cruds.newsletter.index' , compact('title'));
+        // return view('dashboard.cruds.newsletter.index' , compact('title'));
     }
 
     /**
@@ -32,12 +34,14 @@ class NewsletterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Newsletter $newsletter)
     {
+
+
 
         $title = "Ajouter une newsletter";
 
-        return view('dashboard.cruds.newsletter.create' , compact('title'));
+        return view('dashboard.cruds.newsletter.create' , compact('title' , 'newsletter'));
     }
 
     /**
@@ -62,14 +66,14 @@ class NewsletterController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function show(Newsletter $newsletter)
+    public function show(Newsletter $newsletter , NewsletterMailsDataTable $newsletterMailsDataTable)
     {
 
-        $title = "Show Newsletter";
+        $title = "Newsletter Page";
 
-        $newsletterMailsDataTable = new  NewsletterMailsDataTable($newsletter->id);
+        $tableTitle = "Mails Table";
 
-        // return $newsletterMailsDataTable->render('dashboard.cruds.newsletter.show' ,compact('newsletter', 'title'));
+        return $newsletterMailsDataTable->setNewsletterId($newsletter->id)->render('dashboard.cruds.newsletter.show' ,compact('newsletter', 'title' , 'tableTitle'));
     }
 
     /**
@@ -80,8 +84,6 @@ class NewsletterController extends Controller
      */
     public function edit(Newsletter $newsletter)
     {
-
-
 
         $title = "Modifier une newsletter";
 
