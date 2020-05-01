@@ -29,13 +29,13 @@ class ComponentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Component $component)
     {
         $title = "créer un composant";
         $types=Type::all();
 
 
-        return view('dashboard.cruds.component.create' , compact('title','types'));
+        return view('dashboard.cruds.component.create' , compact('title','types' , 'component'));
     }
 
     /**

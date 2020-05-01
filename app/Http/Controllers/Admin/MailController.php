@@ -28,13 +28,14 @@ class MailController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Mail $mail)
     {
         $title = "Construire un mail";
 
         $newsletters = Newsletter::all();
 
-        return view('dashboard.cruds.mail.create' , compact('title','newsletters'));
+
+        return view('dashboard.cruds.mail.create' , compact('title','newsletters' , 'mail'));
     }
 
     /**

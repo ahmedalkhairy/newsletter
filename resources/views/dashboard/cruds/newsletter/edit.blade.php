@@ -13,7 +13,6 @@
         @include('dashboard.cruds.newsletter.form')
 
     </form>
-
 </div>
 
 @endsection
