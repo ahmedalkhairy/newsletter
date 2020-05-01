@@ -1,9 +1,10 @@
 @extends('dashboard.partials.layout')
 
-@section('title' , 'home page')
+@section('title' , $title??"Dashboard")
 
 
 @section('content')
+
 
 
 

@@ -23,9 +23,9 @@ Route::get('/', function () {
 
 
 Route::get('/logout' , function(){
-      
-    auth()->logout(); 
-    
+
+    auth()->logout();
+
     return back();
 });
 
@@ -35,11 +35,11 @@ Route::middleware(['auth' , 'admin'])->namespace('Admin')->group(function () {
     Route::resource('newsletters', 'NewsletterController')->except('delete');
 
     Route::patch('newsletters/{newsletter}/active' , ['uses'=>'NewsletterController@changeStatus' ,'as'=>'newsletters.changeStatus']);
-    
+
     Route::resource('mails', 'MailController');
-    
+
     Route::resource('components', 'ComponentController');
-    
+
     Route::resource('types', 'TypeController');
 
 });
