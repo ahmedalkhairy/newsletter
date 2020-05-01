@@ -62,13 +62,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/layout/fixed-footer.html" class="nav-link">
+                <a href="{{route('mails.create')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Créer</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
+                <a href="{{route('newsletters.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Lister</p>
                 </a>

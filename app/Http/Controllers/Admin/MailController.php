@@ -20,7 +20,7 @@ class MailController extends Controller
 
         $title = "Liste des Mails";
 
-        // return $mailDataTable->render('dashboard.cruds.index' ,compact('title') );
+        return $mailDataTable->render('dashboard.cruds.index' ,compact('title') );
     }
 
     /**
