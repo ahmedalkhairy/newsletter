@@ -55,8 +55,9 @@
                 <div></div>
                 <select class="custom-select form-control " name="newsletter_id">
 
+                    <option disabled selected>select newsletter</option>
                   @foreach($newsletters as $newsletter)
-                        <option  {{$mail->newsletter_id==$newsletter->id?'selected' :'' }}value="{{$newsletter->id}}">{{$newsletter->name}}</option>
+                        <option {{$mail->newsletter_id == $newsletter->id ? 'selected' : '' }}    value="{{$newsletter->id}}">{{$newsletter->name}}</option>
                     @endforeach
                 </select>
             </div>

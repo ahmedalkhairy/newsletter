@@ -9,7 +9,7 @@
         @csrf
         @method("DELETE")
 
-        <input class="btn btn-danger m-2 btn-custom " type="submit" value="Delete">
+        <input class="btn btn-danger m-2 btn-custom delete-btn" type="submit" value="Delete">
 
     </form>
 

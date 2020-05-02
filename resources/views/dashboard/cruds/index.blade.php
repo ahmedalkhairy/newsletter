@@ -16,7 +16,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 {!! $dataTable->table([
-                                    'class'=>'table table-bordered table-hover dataTable dtr-inline'
+                                'class'=>'table table-bordered table-hover dataTable dtr-inline'
                                 ]) !!}
                             </div>
                         </div>
@@ -31,5 +31,38 @@
 @push('js')
 
 {!! $dataTable->scripts() !!}
+
+
+<script>
+    document.querySelector('#mail-table').addEventListener('click' , function(e){
+
+
+        if(e.target.className.includes('delete-btn')){
+
+
+
+            Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+            if (result.value) {
+
+                e.target.parentElement.submit();
+            }
+            });
+
+
+            e.preventDefault();
+        }
+    });
+
+
+</script>
+
 
 @endpush
