@@ -68,7 +68,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{route('newsletters.index')}}" class="nav-link">
+                <a href="{{route('mails.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Lister</p>
                 </a>

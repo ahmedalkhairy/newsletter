@@ -18,6 +18,7 @@ class MailController extends Controller
     public function index(MailDataTable $mailDataTable)
     {
 
+
         $title = "Liste des Mails";
 
         return $mailDataTable->render('dashboard.cruds.index' ,compact('title') );
