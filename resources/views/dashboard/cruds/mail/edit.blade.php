@@ -6,6 +6,7 @@
 @section('content')
 
 
+
 <div class="container">
     <form action="{{route('mails.update' , ['mail'=>$mail])}}" method="POST" role="form" id="quickForm" novalidate="novalidate">
         @method('PATCH')
@@ -16,3 +17,4 @@
 </div>
 
 @endsection
+

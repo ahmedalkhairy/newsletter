@@ -1,4 +1,4 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-light-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
       <img src="/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
@@ -53,7 +53,7 @@
 
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
+              <i class="nav-icon far fa-envelope"></i>
               <p>
                 Mails
                 <i class="fas fa-angle-left right"></i>
@@ -79,7 +79,7 @@
 
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
+              <i class="nav-icon fa fa-certificate"></i>
               <p>
                 Composants
                 <i class="fas fa-angle-left right"></i>
@@ -88,13 +88,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/layout/fixed-footer.html" class="nav-link">
+                <a href="{{route('components.create')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Créer</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
+                <a href="{{route('components.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Lister</p>
                 </a>
@@ -104,7 +104,7 @@
 
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
+              <i class="nav-icon 	fas fa-user-friends"></i>
               <p>
                 Inscrits
               </p>
@@ -113,7 +113,7 @@
 
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
+              <i class="nav-icon fas fa-chart-pie"></i>
               <p>
                 Statistiques
               </p>

@@ -41,6 +41,7 @@ Route::middleware(['auth' , 'admin'])->namespace('Admin')->group(function () {
     Route::resource('components', 'ComponentController');
 
     Route::resource('types', 'TypeController');
+     Route::resource('users', 'UserController');
 
 });
 
