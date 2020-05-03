@@ -2,7 +2,7 @@
 
 
 @section('title' , $title ?? "Dashboard")
-=======
+
 @section('title' , 'home page')
 
 
