@@ -15,9 +15,15 @@ class User extends Authenticatable
      *
      * @var array
      */
+
+    protected $table = 'users';
+
     protected $fillable = [
-        'name', 'email', 'password',
+
+        'name', 'email', 'password', 'role', 'last_name','picture_url','dob',
+
     ];
+
 
     /**
      * The attributes that should be hidden for arrays.
@@ -43,5 +49,4 @@ class User extends Authenticatable
         //set default value for role as aclient
         'role' => '0',
     ];
-
 }
