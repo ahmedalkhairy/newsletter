@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','role'
+        'name', 'email', 'password', 'role', 'last_name','picture_url','dob',
     ];
 
     /**
@@ -43,5 +43,4 @@ class User extends Authenticatable
         //set default value for role as aclient
         'role' => '0',
     ];
-
 }

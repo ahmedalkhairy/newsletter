@@ -22,7 +22,7 @@ Route::get('/', function () {
 
 
 
-Route::get('/logout' , function(){
+Route::get('/logout', function () {
 
     auth()->logout();
 
@@ -30,20 +30,31 @@ Route::get('/logout' , function(){
 });
 
 
-Route::middleware(['auth' , 'admin'])->namespace('Admin')->group(function () {
+Route::middleware(['auth'])->group(function () {
 
-    Route::resource('newsletters', 'NewsletterController')->except('delete');
 
-    Route::patch('newsletters/{newsletter}/active' , ['uses'=>'NewsletterController@changeStatus' ,'as'=>'newsletters.changeStatus']);
+    Route::middleware(['admin'])->namespace('Admin')->group(function () {
 
-    Route::resource('mails', 'MailController');
+        Route::resource('newsletters', 'NewsletterController')->except('delete');
 
-    Route::resource('components', 'ComponentController');
+        Route::patch('newsletters/{newsletter}/active', ['uses' => 'NewsletterController@changeStatus', 'as' => 'newsletters.changeStatus']);
 
-    Route::resource('types', 'TypeController');
+        Route::resource('mails', 'MailController');
 
+        Route::resource('components', 'ComponentController');
+
+        Route::resource('types', 'TypeController');
+    });
+
+
+    //for user profile
+    Route::patch('users/profile', 'UserProfileController@update')->name('profile.update');
+
+    Route::get('users/profile/edit','UserProfileController@edit')->name('profile.edit');
+
+    Route::get('users/profile', 'UserProfileController@show')->name('profile.show');
 });
 
-Auth::routes(['register'=>false]);
+Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
