@@ -13,7 +13,6 @@
     <form action="{{route('profile.update' , Auth::user())}}" method="POST" role="form" id="quickForm" novalidate="novalidate">
         @method('PATCH')
 
-        
     <div class="form-group">
         <div class="col-12">
             @csrf
@@ -101,7 +100,7 @@
         </div>
     </div>
 
-    
+
     <div class="form-group">
         <div class="col-12">
             @csrf
