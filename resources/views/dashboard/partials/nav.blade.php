@@ -22,7 +22,7 @@
 
 
                     <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
+          <a href="{{route('profile.show',Auth::user())}}" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
                 <img src="#" alt="User Avatar" class="img-size-50 img-circle mr-3">
@@ -44,7 +44,7 @@
 
 
                     <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item">
+                    <a href="{{route('profile.edit',Auth::user())}}" class="dropdown-item">
                         <i class="fas fa-cog"></i> Paramètres
                     </a>
                     <div class="dropdown-divider"></div>
