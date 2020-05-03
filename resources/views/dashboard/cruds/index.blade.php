@@ -6,12 +6,12 @@
 <section class="content">
     <div class="row">
         <div class="col-12">
-            <div class="card">
-                <div class="card-header">
+            <div class="card card-primary my-4">
+                <div class="card-header ">
                     <h3 class="card-title">{{$title}}</h3>
                 </div>
                 <!-- /.card-header -->
-                <div class="card-body">
+                <div class="card-body ">
                     <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
                         <div class="row">
                             <div class="col-sm-12">
