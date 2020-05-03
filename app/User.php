@@ -19,7 +19,9 @@ class User extends Authenticatable
     protected $table = 'users';
 
     protected $fillable = [
-        'name','last_name','dob','photo', 'email', 'password',
+
+        'name', 'email', 'password', 'role', 'last_name','picture_url','dob',
+
     ];
 
 
@@ -47,5 +49,4 @@ class User extends Authenticatable
         //set default value for role as aclient
         'role' => '0',
     ];
-
 }

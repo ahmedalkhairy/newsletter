@@ -4,11 +4,13 @@ namespace Tests\Unit;
 
 use App\Component;
 use App\Type;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\TestCase;
 
 class ComponentTest extends TestCase
 {
-    
+
+    use RefreshDatabase;
     /**
      * @test
      */
@@ -28,7 +30,7 @@ class ComponentTest extends TestCase
         ]);
 
         $typeViaComponet = $componet->type;
-            
+
 
         $this->assertEquals('buttons' , $typeViaComponet->type);
 
