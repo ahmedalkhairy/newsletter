@@ -4,6 +4,7 @@ use App\Newsletter;
 use App\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,9 +20,6 @@ Route::get('/', function () {
 
     return view('auth/login');
 });
-
-
-
 
 
 Route::get('/logout', function () {
@@ -55,10 +53,6 @@ Route::middleware(['auth'])->group(function () {
     });
 
 
-
-
-
-
     //for user profile
     Route::patch('users/profile', 'UserProfileController@update')->name('profile.update');
 
@@ -67,8 +61,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('users/profile', 'UserProfileController@show')->name('profile.show');
 
 
-  //  Route::put('{newsletter}/subscribe')->name(subscribe);
-   // Route::put('{newsletter}/unsubscribe')->name(unsubscribe);
+    Route::put('{newsletter}/subscribe', 'SubscribtionController@subscribe')->name('subscribe');
+    Route::put('{newsletter}/unsubscribe', 'SubscribtionController@unsubscribe')->name('unsubscribe');
 
 
 });
@@ -82,20 +76,20 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //     $user = User::get()->first();
 
-    // $user->newsletters()->sync([
-    //     5=>[
-    //     'inscription'=>0
-    // ]
-    //  , 4 =>[
-    //      'inscription'=>0
-    //  ]
-    //  ]);
+// $user->newsletters()->sync([
+//     5=>[
+//     'inscription'=>0
+// ]
+//  , 4 =>[
+//      'inscription'=>0
+//  ]
+//  ]);
 
-    // $user->newsletters()->syncWithoutDetaching([10 , 12]);
+// $user->newsletters()->syncWithoutDetaching([10 , 12]);
 
-    // dd($user->newsletters->where('id' , 5)->first()->pivot->inscription);
+// dd($user->newsletters->where('id' , 5)->first()->pivot->inscription);
 
-    // Newsletter::find(20)->users()->sync([1]);
+// Newsletter::find(20)->users()->sync([1]);
 
 
 // });
