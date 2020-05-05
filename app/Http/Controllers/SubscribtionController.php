@@ -9,7 +9,8 @@ use App\User;
 class SubscribtionController extends Controller
 {
 
-   public function subscribe(Newsletter $newsletter){
+  public function subscribe(Newsletter $newsletter){
+
 
        auth()->user()->subscription($newsletter->id , User::SUBSCRIBE);
 
