@@ -1,16 +1,16 @@
 <div class="d-inline-flex">
 
-    <a class="btn btn-primary m-2" href="{{route('mails.show' , ['mail'=>$id])}}">Show</a>
-
-    <a class="btn btn-secondary m-2" href="{{route('mails.edit' , ['mail'=>$id])}}">Edit</a>
+<a href="{{ route('mails.show', ['mail'=>$id]) }}">   <i class="fas fa-eye"> </i> </a>&nbsp&nbsp
+  <a href="{{ route('mails.edit', ['mail'=>$id]) }}"> <i class="fas fa-edit"></i> </a>&nbsp&nbsp
 
 
     <form action="{{route('mails.destroy' , ['mail'=>$id])}}" method="POST">
         @csrf
         @method("DELETE")
 
-        <input class="btn btn-danger m-2 btn-custom delete-btn" type="submit" value="Delete">
+        <input class="btn btn-block btn-outline-danger btn-xs" type="submit" value="Delete">
 
     </form>
 
 </div>
+

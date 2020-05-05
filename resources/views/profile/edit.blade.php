@@ -10,7 +10,7 @@
         <div class="card-body">
 
 
-    <form action="{{route('profile.update' , Auth::user())}}" method="POST" role="form" id="quickForm" novalidate="novalidate">
+    <form action="{{route('profile.update' , Auth::user())}}" method="POST" role="form" id="quickForm" novalidate="novalidate" ENCTYPE="multipart/form-data">
         @method('PATCH')
 
     <div class="form-group">
@@ -113,7 +113,7 @@
 
             <label for="{{$input}}">Photo de profil </label>
 
-            <input type="text" name="{{$input}}" value="{{Auth::user()->$input}}"
+            <input type="file" name="{{$input}}" value="{{Auth::user()->$input}}"
                 class="form-control @error($input) is-invalid @enderror" id="{{$input}}" placeholder="Enter ">
 
             @error($input)

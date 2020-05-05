@@ -21,7 +21,7 @@
         <!-- title row -->
         <div class="row">
             <div class="col-12">
-                <h4>  <i class="fa fa-certificate"></i> {{$component->content}}
+                <h4>  <i class="fa fa-certificate"></i> &nbsp {{$component->content}}
                 </h4>
             </div>
             <!-- /.col -->

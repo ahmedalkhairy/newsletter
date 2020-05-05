@@ -22,7 +22,7 @@
         <div class="row">
             <div class="col-12">
                 <h4>
-                    <i class="fas fa-copy"></i> {{$mail->title}}
+                    <i class=" far fa-envelope"></i> &nbsp {{$mail->title}}
                 </h4>
             </div>
             <!-- /.col -->

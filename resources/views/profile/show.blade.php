@@ -14,6 +14,12 @@
 
                         <h2 class="lead"><b> {{ Auth::user()->name}} {{ Auth::user()->last_name }} </b></h2>
                     </div>
+
+                    <div class="col-6 text-center">
+                    
+                    
+                      <img src="{{asset('storage/imgs/'.Auth::user()->picture_url)}} " alt="" class="img-size-60 img-circle img-fluid mr-3 ">
+
                     <div class="card-body pt-5 ">
                         <div class="row">
                             <div class="col-6">
@@ -43,6 +49,7 @@
                                     class="img-size-60 img-circle img-fluid mr-3 ">
                             </div>
                         </div>
+
                     </div>
                     <div class="card-footer">
                         <div class="text-right">
