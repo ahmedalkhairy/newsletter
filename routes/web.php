@@ -56,8 +56,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('users/profile', 'UserProfileController@show')->name('profile.show');
 
-    Route::put('{newsletter}/subscribe')->name(subscribe);
-    Route::put('{newsletter}/unsubscribe')->name(unsubscribe);
+  //  Route::put('{newsletter}/subscribe')->name(subscribe);
+   // Route::put('{newsletter}/unsubscribe')->name(unsubscribe);
 
 });
 
