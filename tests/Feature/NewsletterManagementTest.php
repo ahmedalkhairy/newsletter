@@ -13,12 +13,14 @@ class NewsletterManagementTest extends TestCase
     use RefreshDatabase;
 
     /**
+     * @group  a_newsletter_can_be_created
+     *
      * @test
      */
     public function a_newsletter_can_be_created()
     {
         $user = $this->actingAs(factory(User::class)->create());
-        
+
         $response = $user->post('newsletters', [
             'name' => "News",
             'description' => "adsadsadsadadsdas",
@@ -36,40 +38,52 @@ class NewsletterManagementTest extends TestCase
     }
 
     /**
+     * @group newsletter_create_validation_of_required_and_unique_role
+     * @test
+     */
+    public function newsletter_create_validation_of_required_and_unique_role(){
+     //for required role
+        $user = $this->actingAs(factory(User::class)->create());
+        $response = $user->post('newsletters', [
+            'name' => "",
+            'description' => "",
+        ]);
+        $response->assertSessionHasErrors(['name', 'description']);
+        // for unique name of newsletter
+        factory(Newsletter::class)->create([
+            'name'=>'News'
+        ]);
+        $response = $user->post('newsletters', [
+            'name' => "News",
+            'description' => "adsadsadsadadsdas",
+        ]);
+        $response->assertSessionHasErrors(['name']);
+
+    }
+
+    /**
      *  @test
      *
      * @return void
      */
     public function news_letter_validation()
     {
-
-
         //for test valdation in store method
         $user = $this->actingAs(factory(User::class)->create());
         $response = $user->post('newsletters', [
             'name' => "",
             'description' => "",
         ]);
-
         $response->assertSessionHasErrors(['name', 'description']);
-
-
         //successfully created
         factory(Newsletter::class)->create([
             'name'=>'News'
         ]);
-
-
         $response = $user->post('newsletters', [
             'name' => "News",
             'description' => "adsadsadsadadsdas",
         ]);
-
-
         $response->assertSessionHasErrors(['name']);
-
-
-
         //for test update validation method
 
         //create new newsletter
@@ -89,8 +103,29 @@ class NewsletterManagementTest extends TestCase
 
         $response->assertSessionHasNoErrors();
     }
+    /**
+     * @group validation_of_update_newsletter_required_role
+     * @test
+     */
+    public function validation_of_update_newsletter_required_role()
+    {
+
+        $user = $this->actingAs(factory(User::class)->create());
+        $newsletter = factory(Newsletter::class)->create();
+        $response = $user->patch("newsletters/$newsletter->id", [
+
+            'name' => '',
+            'description' => '',
+            'active' => '',
+
+        ]);
+
+        $response->assertSessionHasErrors(['name','description','active']);
+
+    }
 
     /**
+     * @group  a_newsletter_can_be_updated
      * @test
      *
      * @return void
@@ -98,32 +133,21 @@ class NewsletterManagementTest extends TestCase
     public function  a_newsletter_can_be_updated()
     {
         $this->withoutExceptionHandling();
-
         $user = $this->actingAs(factory(User::class)->create());
-
         $newsletter = factory(Newsletter::class)->create();
-
         $response = $user->patch("newsletters/$newsletter->id", [
 
-            'name' => 'abdo',
+            'name' => 'newsletter1',
             'description' => 'osamaosamaosamaosama',
             'active' => 1,
 
         ]);
-
-
         $response->assertRedirect();
-
         $this->assertCount(1 , Newsletter::all());
-
-        $this->assertEquals('abdo' , $newsletter->fresh()->name);
-
+        $this->assertEquals('newsletter1' , $newsletter->fresh()->name);
         $this->assertEquals('osamaosamaosamaosama' , $newsletter->fresh()->description);
-
         $this->assertEquals('Active' , $newsletter->fresh()->active);
-
         $response->assertRedirect();
-
     }
 
 
@@ -156,11 +180,11 @@ class NewsletterManagementTest extends TestCase
 
         //change the status of the newsletter to inactive
         $response =  $user->patch(route('newsletters.changeStatus',['newsletter'=>$newsletter->id]));
-        
+
         $response->assertSessionDoesntHaveErrors();
 
         $this->assertEquals('0' , $newsletter->fresh()->getOriginal('active'));
-    
+
     }
 
 
@@ -198,7 +222,7 @@ class NewsletterManagementTest extends TestCase
     //     ]);
 
     //     $response->assertSessionDoesntHaveErrors();
-        
+
 
     //     //check if the vaidation will falid in case the active is empty
     //     $response =  $user->patch(route('newsletters.changeStatus',['newsletter'=>$newsletter->id]) , [
