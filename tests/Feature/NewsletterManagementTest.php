@@ -2,9 +2,8 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\User;
 use App\Newsletter;
 
@@ -77,7 +76,7 @@ class NewsletterManagementTest extends TestCase
         $response->assertSessionHasErrors(['name', 'description']);
         //successfully created
         factory(Newsletter::class)->create([
-            'name'=>'News'
+            'name' => 'News'
         ]);
         $response = $user->post('newsletters', [
             'name' => "News",
@@ -143,10 +142,22 @@ class NewsletterManagementTest extends TestCase
 
         ]);
         $response->assertRedirect();
+
         $this->assertCount(1 , Newsletter::all());
         $this->assertEquals('newsletter1' , $newsletter->fresh()->name);
         $this->assertEquals('osamaosamaosamaosama' , $newsletter->fresh()->description);
         $this->assertEquals('Active' , $newsletter->fresh()->active);
+
+
+        $this->assertCount(1, Newsletter::all());
+
+        $this->assertEquals('newsletter1', $newsletter->fresh()->name);
+
+        $this->assertEquals('osamaosamaosamaosama', $newsletter->fresh()->description);
+
+        $this->assertEquals('Active', $newsletter->fresh()->active);
+
+
         $response->assertRedirect();
     }
 
@@ -162,28 +173,36 @@ class NewsletterManagementTest extends TestCase
 
         $newsletter = factory(Newsletter::class)->create([
 
-            'active' =>'0'
+            'active' => '0'
         ]);
 
 
         //change the status of the newsletter to active
-        $response =  $user->patch(route('newsletters.changeStatus',['newsletter'=>$newsletter->id]) , [
+        $response =  $user->patch(route('newsletters.changeStatus', ['newsletter' => $newsletter->id]), [
 
-            'active'=>'1'
+            'active' => '1'
 
         ]);
 
         $response->assertSessionDoesntHaveErrors();
 
-        $this->assertEquals('1' , $newsletter->fresh()->getOriginal('active'));
+        $this->assertEquals('1', $newsletter->fresh()->getOriginal('active'));
 
 
         //change the status of the newsletter to inactive
+
         $response =  $user->patch(route('newsletters.changeStatus',['newsletter'=>$newsletter->id]));
 
         $response->assertSessionDoesntHaveErrors();
 
         $this->assertEquals('0' , $newsletter->fresh()->getOriginal('active'));
+
+
+        $response =  $user->patch(route('newsletters.changeStatus', ['newsletter' => $newsletter->id]));
+
+        $response->assertSessionDoesntHaveErrors();
+
+        $this->assertEquals('0', $newsletter->fresh()->getOriginal('active'));
 
     }
 

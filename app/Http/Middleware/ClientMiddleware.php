@@ -2,11 +2,10 @@
 
 namespace App\Http\Middleware;
 
-use App\User;
 use Closure;
 use Illuminate\Http\Response;
-
-class Admin
+use App\User;
+class ClientMiddleware
 {
     /**
      * Handle an incoming request.
@@ -17,9 +16,8 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-
-        abort_unless(auth()->user()->role==User::ADMIN_ROLE , Response::HTTP_FORBIDDEN);
-
+        abort_unless(auth()->user()->role == User::CLINET_ROLE , Response::HTTP_FORBIDDEN);
+        
         return $next($request);
     }
 }

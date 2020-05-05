@@ -5,8 +5,6 @@
 @section('content')
 
 
-
-
 <div class=" container card card-solid">
     <div class="card-body pb-3">
         <div class="row d-flex align-items-stretch">

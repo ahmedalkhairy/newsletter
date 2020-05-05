@@ -1,6 +1,5 @@
 <?php
 
-use App\Mail;
 use App\Newsletter;
 use App\User;
 use Illuminate\Support\Facades\Route;
@@ -17,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
+
     return view('auth/login');
 });
 
@@ -49,18 +49,53 @@ Route::middleware(['auth'])->group(function () {
     });
 
 
+    Route::middleware(['client'])->group(function () {
+
+
+    });
+
+
+
+
+
+
     //for user profile
     Route::patch('users/profile', 'UserProfileController@update')->name('profile.update');
 
-    Route::get('users/profile/edit','UserProfileController@edit')->name('profile.edit');
+    Route::get('users/profile/edit', 'UserProfileController@edit')->name('profile.edit');
 
     Route::get('users/profile', 'UserProfileController@show')->name('profile.show');
 
+
   //  Route::put('{newsletter}/subscribe')->name(subscribe);
    // Route::put('{newsletter}/unsubscribe')->name(unsubscribe);
+
 
 });
 
 Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+// Route::get('/test' , function(){
+
+//     $user = User::get()->first();
+
+    // $user->newsletters()->sync([
+    //     5=>[
+    //     'inscription'=>0
+    // ]
+    //  , 4 =>[
+    //      'inscription'=>0
+    //  ]
+    //  ]);
+
+    // $user->newsletters()->syncWithoutDetaching([10 , 12]);
+
+    // dd($user->newsletters->where('id' , 5)->first()->pivot->inscription);
+
+    // Newsletter::find(20)->users()->sync([1]);
+
+
+// });

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Newsletter;
+use App\User;
 
 class SubscribtionController extends Controller
 {
@@ -17,7 +19,7 @@ class SubscribtionController extends Controller
 
     public function unsubscribe(Newsletter $newsletter){
 
-        auth()->user()->unsubscription($newsletter->id , User::UNSUBSCRIBE);
+        auth()->user()->subscription($newsletter->id , User::UNSUBSCRIBE);
 
         return response()->json(['message' => 'success!']);
 
