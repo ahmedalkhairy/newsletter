@@ -21,15 +21,19 @@ class Newsletter extends Model
     public function getActiveAttribute($attribute)
     {
         return [
-            '0'=>"Inactive",
-            '1'=>"Active"
+            '0' => "Inactive",
+            '1' => "Active"
         ][$attribute];
-
     }
 
 
     public function mails()
     {
         return $this->hasMany(Mail::class);
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class)->withTimestamps()->withPivot(['inscription']);
     }
 }

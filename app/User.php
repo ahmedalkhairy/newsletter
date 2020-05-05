@@ -8,6 +8,13 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
+
+    const SUBSCRIBE = 1;
+    const UNSUBSCRIBE = 0;
+
+    const ADMIN_ROLE = 1;
+    const CLINET_ROLE = 0;
+
     use Notifiable;
 
     /**
@@ -20,7 +27,7 @@ class User extends Authenticatable
 
     protected $fillable = [
 
-        'name', 'email', 'password', 'role', 'last_name','picture_url','dob',
+        'name', 'email', 'password', 'role', 'last_name', 'picture_url', 'dob',
 
     ];
 
@@ -50,15 +57,35 @@ class User extends Authenticatable
         'role' => '0',
     ];
 
+
     public function isAdmin(){
-        return $this->role=='1';
+        return $this->role== User::ADMIN_ROLE ;
     
     }
     
     
         public function isClient()
         {
-            return $this->role == '0';
+            return $this->role == User::CLINET_ROLE;
         }
-    
+
+    public function newsletters()
+    {
+        return $this->belongsToMany(Newsletter::class)->withPivot(['inscription'])-> withTimestamps();
+    }
+
+
+    public function subscription($newsletterId , $subscribeValue)
+    {
+
+        $this->newsletters()->syncWithoutDetaching([
+
+            $newsletterId =>[
+
+                'inscription' =>$subscribeValue
+            ]
+
+        ]);
+    }
+
 }

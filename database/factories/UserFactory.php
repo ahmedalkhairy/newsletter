@@ -20,7 +20,7 @@ use Illuminate\Support\Str;
 $factory->define(User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
-       'last_name'=>$faker->name,
+        'last_name'=>$faker->name,
         'role'=>'1',
         'picture_url'=>$faker->imageUrl(),
         'dob'=>$faker->date(),
