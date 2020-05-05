@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<!DOCTYPE html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,12 +21,13 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="../../index2.html"><b>Admin</b>LTE</a>
+    <p><h4> Déja inscrit</h4></p>
+    <a href="../../index2.html"><b></b></a>
   </div>
  <!-- /.login-logo -->
  <div class="card">
     <div class="card-body login-card-body">
-      <p class="login-box-msg">Sign in to start your session</p>
+      <p class="login-box-msg"></p>
 
                 
                 <form action="{{ route('login') }}" method="POST">
@@ -51,7 +50,7 @@
 		
 		
         <div class="input-group mb-3">
-          <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+          <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="password" required autocomplete="current-password">
 		             @error('password')
                                   <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
@@ -76,19 +75,19 @@
           </div>
           <!-- /.col -->
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+            <button type="submit" class="btn btn-primary ">Connexion</button>
           </div>
           <!-- /.col -->
         </div>
       </form>
 
       <div class="social-auth-links text-center mb-3">
-        <p>- OR -</p>
+        
         <a href="#" class="btn btn-block btn-primary">
-          <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+          <i class="fab fa-facebook mr-2"></i> Se connecter avec Facebook
         </a>
         <a href="#" class="btn btn-block btn-danger">
-          <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+          <i class="fab fa-google-plus mr-2"></i> Se connecter avec Google+
         </a>
       </div>
 
@@ -105,5 +104,6 @@
                 
             </div>
         </div>
-</body>
-@endsection
+        </body>
+</html>
+

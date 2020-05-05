@@ -35,7 +35,7 @@
                     <div class="col-6 text-center">
                     
                     
-                      <img src="{{asset('storage/imgs/'.Auth::user()->photo)}} " alt="" class="img-size-60 img-circle img-fluid mr-3 ">
+                      <img src="{{asset('storage/imgs/'.Auth::user()->picture_url)}} " alt="" class="img-size-60 img-circle img-fluid mr-3 ">
                     </div>
                   </div>
                 </div>

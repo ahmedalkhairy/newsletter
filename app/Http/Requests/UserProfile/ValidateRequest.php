@@ -26,7 +26,7 @@ class ValidateRequest extends FormRequest
         return [
             'name' => 'required',
             'last_name' => 'required',
-            'picture_url' => 'required',
+           // 'picture_url' => 'required',
             'dob' => 'required|date',
             'email' => 'required|email',
         ];

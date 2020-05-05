@@ -49,4 +49,16 @@ class User extends Authenticatable
         //set default value for role as aclient
         'role' => '0',
     ];
+
+    public function isAdmin(){
+        return $this->role=='1';
+    
+    }
+    
+    
+        public function isClient()
+        {
+            return $this->role == '0';
+        }
+    
 }

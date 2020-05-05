@@ -22,7 +22,7 @@
         <div class="row">
             <div class="col-12">
                 <h4>
-                    <i class="fas fa-copy"></i> {{$newsletter->name}}
+                    <i class="fas fa-copy"></i> &nbsp {{$newsletter->name}}
                 </h4>
             </div>
             <!-- /.col -->

@@ -2,11 +2,12 @@
 
 
     <div class="m-2">
-        <a href="{{ route('newsletters.show', ['newsletter'=>$id]) }}"> <i class="fas fa-eye"> </i> </a>&nbsp;&nbsp;
+        <a href="{{ route('newsletters.show', ['newsletter'=>$id]) }}"> <i class="fas fa-eye"> </i> </a>&nbsp;
     </div>
 
     <div class="m-2">
-        <a href="{{ route('newsletters.edit', ['newsletter'=>$id]) }}"> <i class="fas fa-edit"></i> </a>&nbsp;&nbsp;
+        <a href="{{ route('newsletters.edit', ['newsletter'=>$id]) }}"> <i class="fas fa-edit"></i> </a>&nbsp;
+        
     </div>
 
     <div class="m-2">
