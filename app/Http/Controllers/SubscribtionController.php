@@ -14,7 +14,7 @@ class SubscribtionController extends Controller
 
        auth()->user()->subscription($newsletter->id , User::SUBSCRIBE);
 
-       return response()->json(['message' => 'success!']);
+       return response()->json(['message' => 'abonnement effectuée avec succés']);
 
    }
 
@@ -22,7 +22,7 @@ class SubscribtionController extends Controller
 
         auth()->user()->subscription($newsletter->id , User::UNSUBSCRIBE);
 
-        return response()->json(['message' => 'success!']);
+        return response()->json(['message' => 'déabonnement effectuée avec succés']);
 
     }
 

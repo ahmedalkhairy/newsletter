@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\newsletter;
-use Illuminate\Support\Facades\Auth;
+use App\Newsletter;
 
 class HomeController extends Controller
 {
@@ -25,15 +23,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->role == '1')
-      
-        return view('dashboard.partials.layout');
-        else {
-            $newsletter= newsletter::all();
-            
-            return view('client.partials.layout',compact('newsletter'));
+
+
+        if(auth()->user()->isAdmin()){
+
+            return view('dashboard.admin.home');
         }
 
+        
+        $newsletters = Newsletter::paginate(10);
 
-}
+        return view('client.home' , compact('newsletters'));
+    }
+
 }

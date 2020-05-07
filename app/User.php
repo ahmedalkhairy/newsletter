@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -54,38 +55,48 @@ class User extends Authenticatable
     protected $attributes = [
 
         //set default value for role as aclient
-        'role' => '0',
+        'role' => User::CLINET_ROLE,
     ];
 
 
-    public function isAdmin(){
-        return $this->role== User::ADMIN_ROLE ;
-    
+    public function isAdmin()
+    {
+        return $this->role == User::ADMIN_ROLE;
     }
-    
-    
-        public function isClient()
-        {
-            return $this->role == User::CLINET_ROLE;
-        }
+
+
+    public function isClient()
+    {
+        return $this->role == User::CLINET_ROLE;
+    }
 
     public function newsletters()
     {
-        return $this->belongsToMany(Newsletter::class)->withPivot(['inscription'])-> withTimestamps();
+        return $this->belongsToMany(Newsletter::class)->withPivot(['inscription'])->withTimestamps();
     }
 
 
-    public function subscription($newsletterId , $subscribeValue)
+    public function subscription($newsletterId, $subscribeValue)
     {
 
         $this->newsletters()->syncWithoutDetaching([
 
-            $newsletterId =>[
+            $newsletterId => [
 
-                'inscription' =>$subscribeValue
+                'inscription' => $subscribeValue
             ]
 
         ]);
     }
 
+    public function isSubscribe($newsletterId)
+    {
+        return DB::table('newsletter_user')
+            ->select(['id'])
+            ->where('user_id', $this->id)
+            ->where('newsletter_id', $newsletterId)
+            ->where('inscription', User::SUBSCRIBE)
+            ->get()
+            ->isNotEmpty();
+    }
 }

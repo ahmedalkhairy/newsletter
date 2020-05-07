@@ -64,7 +64,6 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['client'])->group(function () {
 
 
-
         Route::put('{newsletter}/subscribe', 'SubscribtionController@subscribe')->name('subscribe');
         
         Route::put('{newsletter}/unsubscribe', 'SubscribtionController@unsubscribe')->name('unsubscribe');

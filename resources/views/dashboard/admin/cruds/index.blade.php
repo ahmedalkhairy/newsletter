@@ -42,6 +42,7 @@
         activeToggle();
         
     });
+    
     const csrf = "{{ csrf_token() }}";
 
 </script>

@@ -106,6 +106,57 @@ function activeToggle()
 }
 
 
+
+function subscriptionToggle(){
+
+
+    document.querySelector('.card').addEventListener('change' , function(e){
+
+
+        if(e.target.className.includes('newsletters')){
+
+          const newsletter_id =  e.target.parentElement.getAttribute('data-newletter_id');
+
+
+            if(e.target.checked){
+
+                $.ajax({
+
+                    type: 'PUT',
+
+                    url: `${ newsletter_id }/subscribe`,
+                    success: function (data)
+                    {
+                        notifaction(data.message);
+
+                    }
+
+                });
+
+
+            }else{
+
+                $.ajax({
+
+                    type: 'PUT',
+                    url: `${ newsletter_id }/unsubscribe`,
+                    success: function (data)
+                    {
+                        notifaction(data.message);
+
+                    }
+
+                });
+
+
+                
+            }
+        }
+    });
+}
+
+
+
 function notifaction(message)
 {
 
