@@ -103,7 +103,7 @@
           </li>
 
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+          <a href="{{route('users.index')}}" class="nav-link">
               <i class="nav-icon 	fas fa-user-friends"></i>
               <p>
                 Inscrits

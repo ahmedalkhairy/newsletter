@@ -1,7 +1,7 @@
 <?php
 
-use App\Newsletter;
-use App\User;
+
+
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -45,7 +45,11 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['admin'])->namespace('Admin')->group(function () {
 
+
+        Route::get('users/filter' , 'UserController@index')->name('users.index');
+
         Route::put('{newsletter}/activate'   , 'NewsletterController@activate');
+
         Route::put('{newsletter}/deactivate' ,'NewsletterController@deactivate');
 
         Route::resource('newsletters', 'NewsletterController')->except('delete');
