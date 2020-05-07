@@ -21,7 +21,7 @@ class MailController extends Controller
 
         $title = "Liste des Mails";
 
-        return $mailDataTable->render('dashboard.cruds.index' ,compact('title') );
+        return $mailDataTable->render('dashboard.admin.cruds.index' ,compact('title') );
     }
 
     /**
@@ -36,7 +36,7 @@ class MailController extends Controller
         $newsletters = Newsletter::all();
 
 
-        return view('dashboard.cruds.mail.create' , compact('title','newsletters' , 'mail'));
+        return view('dashboard.admin.cruds.mail.create' , compact('title','newsletters' , 'mail'));
     }
 
     /**
@@ -67,7 +67,7 @@ class MailController extends Controller
         $mail->load('newsletter');
 
         // dd($mail);
-        return view('dashboard.cruds.mail.show' , compact('mail'));
+        return view('dashboard.admin.cruds.mail.show' , compact('mail'));
     }
 
     /**
@@ -82,7 +82,7 @@ class MailController extends Controller
 
         $newsletters=Newsletter::all();
 
-        return view('dashboard.cruds.mail.edit' , compact('mail' , 'title','newsletters'));
+        return view('dashboard.admin.cruds.mail.edit' , compact('mail' , 'title','newsletters'));
     }
 
     /**

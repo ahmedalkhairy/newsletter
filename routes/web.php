@@ -51,6 +51,11 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['client'])->group(function () {
 
 
+
+        Route::put('{newsletter}/subscribe', 'SubscribtionController@subscribe')->name('subscribe');
+        
+        Route::put('{newsletter}/unsubscribe', 'SubscribtionController@unsubscribe')->name('unsubscribe');
+
     });
 
 
@@ -62,13 +67,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('users/profile', 'UserProfileController@show')->name('profile.show');
 
 
-    Route::put('{newsletter}/subscribe', 'SubscribtionController@subscribe')->name('subscribe');
-    Route::put('{newsletter}/unsubscribe', 'SubscribtionController@unsubscribe')->name('unsubscribe');
 
 
 });
 
-Auth::routes(['register' => false]);
+Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 

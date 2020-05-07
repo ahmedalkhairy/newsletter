@@ -3,8 +3,8 @@
 @section('form-body')
 
 <div class="row">
+    <div class="col-12">
     <div class="form-group">
-        <div class="col-12">
             @csrf
 
             @php
@@ -17,7 +17,7 @@
 
             <input type="text" name="{{$input}}"
                 value="{{  old($input)!==null  ? old($input) :  $newsletter->{$input} }}"
-                class="form-control @error($input) is-invalid @enderror" id="{{$input}}" placeholder="Enter name">
+                class="form-control col-12  @error($input) is-invalid @enderror" id="{{$input}}" placeholder="Enter name">
 
             @error($input)
             <p class="invalid-feedback">{{$message}}</p>

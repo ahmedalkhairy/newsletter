@@ -9,7 +9,7 @@
 <div class="container">
     <form action="{{route('newsletters.store')}}" method="POST" role="form" id="quickForm" novalidate="novalidate">
 
-        @include('dashboard.cruds.newsletter.form')
+        @include('dashboard.admin.cruds.newsletter.form')
 
     </form>
 

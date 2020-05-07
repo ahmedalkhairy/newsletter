@@ -21,7 +21,7 @@ class ComponentDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'dashboard.cruds.component.action');
+            ->addColumn('action', 'dashboard.admin.cruds.component.action');
     }
 
     /**

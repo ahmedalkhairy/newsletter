@@ -24,7 +24,7 @@ class NewsletterController extends Controller
         $title = "Liste des newsletters";
 
 
-        return $datatable->render('dashboard.cruds.index' , compact('title'));
+        return $datatable->render('dashboard.admin.cruds.index' , compact('title'));
 
         // return view('dashboard.cruds.newsletter.index' , compact('title'));
     }
@@ -41,7 +41,7 @@ class NewsletterController extends Controller
 
         $title = "Ajouter une newsletter";
 
-        return view('dashboard.cruds.newsletter.create' , compact('title' , 'newsletter'));
+        return view('dashboard.admin.cruds.newsletter.create' , compact('title' , 'newsletter'));
     }
 
     /**
@@ -73,7 +73,7 @@ class NewsletterController extends Controller
 
         $tableTitle = "Mails Table";
 
-        return $newsletterMailsDataTable->setNewsletterId($newsletter->id)->render('dashboard.cruds.newsletter.show' ,compact('newsletter', 'title' , 'tableTitle'));
+        return $newsletterMailsDataTable->setNewsletterId($newsletter->id)->render('dashboard.admin.cruds.newsletter.show' ,compact('newsletter', 'title' , 'tableTitle'));
     }
 
     /**
@@ -87,7 +87,7 @@ class NewsletterController extends Controller
 
         $title = "Modifier une newsletter";
 
-        return view('dashboard.cruds.newsletter.edit', compact('newsletter', 'title'));
+        return view('dashboard.admin.cruds.newsletter.edit', compact('newsletter', 'title'));
     }
 
     /**

@@ -16,12 +16,12 @@ class MailDataTable extends DataTable
      *
      * @param mixed $query Results from query() method.
      * @return \Yajra\DataTables\DataTableAbstract
-     */
+     */ 
     public function dataTable($query)
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'dashboard.cruds.mail.action');
+            ->addColumn('action', 'dashboard.admin.cruds.mail.action');
 
     }
 

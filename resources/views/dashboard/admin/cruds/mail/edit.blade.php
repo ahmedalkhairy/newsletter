@@ -11,7 +11,7 @@
     <form action="{{route('mails.update' , ['mail'=>$mail])}}" method="POST" role="form" id="quickForm" novalidate="novalidate">
         @method('PATCH')
 
-        @include('dashboard.cruds.mail.form')
+        @include('dashboard.admin.cruds.mail.form')
 
     </form>
 </div>

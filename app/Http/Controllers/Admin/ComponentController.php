@@ -19,7 +19,7 @@ class ComponentController extends Controller
     public function index(ComponentDataTable $componentDataTable)
     {
         $title = "Liste des Components";
-        return $componentDataTable->render('dashboard.cruds.index',compact('title'));
+        return $componentDataTable->render('dashboard.admin.cruds.index',compact('title'));
 
 
     }
@@ -35,7 +35,7 @@ class ComponentController extends Controller
         $types=Type::all();
 
 
-        return view('dashboard.cruds.component.create' , compact('title','types' , 'component'));
+        return view('dashboard.admin.cruds.component.create' , compact('title','types' , 'component'));
     }
 
     /**
@@ -60,7 +60,7 @@ class ComponentController extends Controller
      */
     public function show(Component $component)
     {
-        return view('dashboard.cruds.component.show' , compact('component'));
+        return view('dashboard.admin.cruds.component.show' , compact('component'));
     }
 
     /**
@@ -74,7 +74,7 @@ class ComponentController extends Controller
         $title = "Modifier le component";
         $types=Type::all();
 
-        return view('dashboard.cruds.component.edit' , compact('component' , 'title','types'));
+        return view('dashboard.admin.cruds.component.edit' , compact('component' , 'title','types'));
     }
 
     /**

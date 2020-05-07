@@ -33,7 +33,7 @@ class NewsletterMailsDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'newslettermails.action');
+            ->addColumn('action', 'dashboard.admin.cruds.mail.action');
     }
 
     /**

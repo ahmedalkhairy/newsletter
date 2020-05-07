@@ -93,5 +93,5 @@
 @endsection
 
 @push('js')
-    {!! $dataTable->scripts()!!}
+{!! $dataTable->scripts()!!}
 @endpush
