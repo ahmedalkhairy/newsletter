@@ -33,36 +33,19 @@
 {!! $dataTable->scripts() !!}
 
 
+
 <script>
-    document.querySelector('#mail-table').addEventListener('click' , function(e){
-
-
-        if(e.target.className.includes('delete-btn')){
-
-
-
-            Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-            if (result.value) {
-
-                e.target.parentElement.submit();
-            }
-            });
-
-
-            e.preventDefault();
-        }
+    document.addEventListener('DOMContentLoaded' , function(){
+        
+        confirmMessage();
+        
+        activeToggle();
+        
     });
-
+    const csrf = "{{ csrf_token() }}";
 
 </script>
 
 
+<script src="{{ asset('js/functions.js') }} "></script>
 @endpush

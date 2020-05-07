@@ -94,4 +94,13 @@
 
 @push('js')
 {!! $dataTable->scripts()!!}
+
+<script src= "{{ asset('js/functions.js') }} "></script>
+
+
+<script>
+
+confirmMessage('newslettermails-table');
+   
+</script>
 @endpush

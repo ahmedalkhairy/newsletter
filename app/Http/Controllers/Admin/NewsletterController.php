@@ -120,6 +120,35 @@ class NewsletterController extends Controller
     }
 
 
+
+    public function activate(Newsletter $newsletter)
+    {
+        if(request()->ajax()){
+
+            $newsletter->update([
+
+                'active' => Newsletter::ACTIVE
+            ]);
+
+
+            return response()->json(['message'=>'Newsletter est activée']);
+        }
+    }
+
+    public function deactivate(Newsletter $newsletter)
+    {
+        if(request()->ajax()){
+
+            $newsletter->update([
+
+                'active' => Newsletter::INACTIVE
+            ]);
+
+            return response()->json(['message'=>'Newsletter est désactivé']);
+        }
+    }
+
+
     public function changeStatus(Newsletter $newsletter)
     {
 

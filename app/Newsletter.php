@@ -8,6 +8,10 @@ class Newsletter extends Model
 {
     protected $guarded = [];
 
+
+    const ACTIVE = 1;
+    const INACTIVE = 0;
+
     /**
      *
      * @return void

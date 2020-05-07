@@ -34,9 +34,22 @@ Route::get('/logout', function () {
 Route::middleware(['auth'])->group(function () {
 
 
+
+    //for user profile
+    Route::patch('users/profile', 'UserProfileController@update')->name('profile.update');
+
+    Route::get('users/profile/edit', 'UserProfileController@edit')->name('profile.edit');
+
+    Route::get('users/profile', 'UserProfileController@show')->name('profile.show');
+
+
     Route::middleware(['admin'])->namespace('Admin')->group(function () {
 
+        Route::put('{newsletter}/activate'   , 'NewsletterController@activate');
+        Route::put('{newsletter}/deactivate' ,'NewsletterController@deactivate');
+
         Route::resource('newsletters', 'NewsletterController')->except('delete');
+
 
         Route::patch('newsletters/{newsletter}/active', ['uses' => 'NewsletterController@changeStatus', 'as' => 'newsletters.changeStatus']);
 
@@ -58,13 +71,6 @@ Route::middleware(['auth'])->group(function () {
 
     });
 
-
-    //for user profile
-    Route::patch('users/profile', 'UserProfileController@update')->name('profile.update');
-
-    Route::get('users/profile/edit', 'UserProfileController@edit')->name('profile.edit');
-
-    Route::get('users/profile', 'UserProfileController@show')->name('profile.show');
 
 
 
