@@ -40,8 +40,6 @@ class NewsletterController extends Controller
     public function create(Newsletter $newsletter)
     {
 
-
-
         $title = "Ajouter une newsletter";
 
         return view('dashboard.admin.cruds.newsletter.create' , compact('title' , 'newsletter'));

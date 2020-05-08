@@ -23,7 +23,7 @@ class UserController extends Controller
 
                 ->filter(function ($query) {
 
-                     /**
+                    /**
                      *  select users.id , users.name , users.email , users.dob , users.role
                      *  
                      * from users
@@ -35,22 +35,38 @@ class UserController extends Controller
                      * where newsletters.name like request()->name and newsletter_user.inscription = 1
                      * 
                      */
-                    $query->whereHas('newsletters', function ($query) {
+                    if (request()->name) {
 
-                            $query->where('name' , 'like' , '%'.request()->name .'%')
+                        $query->whereHas('newsletters', function ($query) {
 
-                            ->where('newsletter_user.inscription' , User::SUBSCRIBE);
-                    });
+                            $query->where('name', 'LIKE', '%' . request()->name . '%')
 
-                   
+                                ->where('newsletter_user.inscription', User::SUBSCRIBE);
+                        });
+
+                    }
+
+
+                    /**
+                     * select users.id , users.name , users.email , users.dob , users.role
+                     * from users 
+                     * where users.email like '% request->email %'
+                     */
+                    if (request()->email) {
+
+                        $query->orWhere('email',  'LIKE', '%' . request()->email . '%');
+                    }
                 })
+
                 ->addColumn('full_name', function ($user) {
                     return "$user->name $user->last_name";
                 })
+
                 ->addColumn('newsletter', function ($user) {
 
-                    return $user->newsletters()->count();
+                    return $user->newsletters()->where('newsletter_user.inscription' , User::SUBSCRIBE)->count();
                 })
+
                 ->addColumn('action', function () {
 
                     return '<p>hello</p>';

@@ -15,7 +15,7 @@
         <div class="col-12 mb-4">
 
             <div class="col-4 d-inline-block">
-                <label class="label" for="name">Name newsletter</label>
+                <label class="label" for="name">Name Newsletter</label>
                 <input class="form-control" type="text" name="name" id="name">
             </div>
 
@@ -29,7 +29,7 @@
 
     <div class="row">
         <div class="col-12">
-            <table id="example1" class="table table-bordered table-striped dataTable dtr-inline" role="grid"
+            <table id="users-table" class="table table-bordered table-striped dataTable dtr-inline" role="grid"
                 aria-describedby="example1_info">
                 <thead>
                     <tr role="row">
@@ -40,6 +40,8 @@
                             aria-label="Browser: activate to sort column ascending">Name</th>
                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                             aria-label="Platform(s): activate to sort column ascending">Email</th>
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                            aria-label="Engine version: activate to sort column ascending">Newsletter</th>
                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                             aria-label="Engine version: activate to sort column ascending">Created at</th>
                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
@@ -70,20 +72,23 @@
 
     function fetchData(){
 
-    $('#example1').DataTable({
+    $('#users-table').DataTable({
         processing: true,
            serverSide: true,
            searching: false,
            ajax: {
                url: "{{ route('users.index') }}",
                data:{
+                   //$ symoblic for jQuery
                    name: $('#name').val(),
+                   email : $('#email').val()
                }
            },
            columns: [
                     { data: 'id', name: 'id' },
                     { data: 'full_name', name: 'full_name' },
                     { data: 'email', name: 'email' },
+                    { data: 'newsletter', name: 'newsletter' },
                     { data: 'created_at', name: 'created_at' },
                     { data: 'updated_at', name: 'updated_at' },
                     { data: 'action', name: 'action' }
@@ -93,12 +98,23 @@
 
 
          $('#name').keyup(function(){
+            
+            refrechDatatable();
+            
+         });
 
-            $('#example1').DataTable().destroy();
+
+
+         $('#email').keyup(function(){
+             refrechDatatable();
+         });
+
+         function refrechDatatable(){
+
+            $('#users-table').DataTable().destroy();
 
             fetchData();
-
-         });
+         }
     });
 
 </script>

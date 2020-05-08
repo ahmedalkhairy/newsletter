@@ -30,6 +30,7 @@ class NewsletterManagementTest extends TestCase
         $this->assertCount(1, Newsletter::all());
 
         $this->assertEquals('News', NewsLetter::first()->name);
+        
 
         $this->assertEquals('adsadsadsadadsdas', NewsLetter::first()->description);
 
