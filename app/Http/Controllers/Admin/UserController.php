@@ -17,6 +17,9 @@ class UserController extends Controller
     public function index()
     {
 
+
+        
+
         if (request()->ajax()) {
 
             return DataTables::of(User::query())
