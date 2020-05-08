@@ -14,43 +14,55 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
 
-        if(request()->ajax()){
+        if (request()->ajax()) {
 
             return DataTables::of(User::query())
 
-            ->filter(function($query){
+                ->filter(function ($query) {
 
-                $query->whereHas('newsletters' , function($query){
+                     /**
+                     *  select users.id , users.name , users.email , users.dob , users.role
+                     *  
+                     * from users
+                     * 
+                     * inner join newsletter_user on users.id = newsletter_user.id 
+                     * 
+                     * inner join newsletters on newsletter_user.newsletter_id = newsletters.id 
+                     * 
+                     * where newsletters.name like request()->name and newsletter_user.inscription = 1
+                     * 
+                     */
+                    $query->whereHas('newsletters', function ($query) {
 
-                    $query->where('name' , 'like' , "%".request()->name. "%");
-                    
-                });
+                            $query->where('name' , 'like' , '%'.request()->name .'%')
 
+                            ->where('newsletter_user.inscription' , User::SUBSCRIBE);
+                    });
 
-            })
-            ->addColumn('full_name' , function($user){
-                return "$user->name $user->last_name";
-            })
-            ->addColumn('newsletter' , function($user){
+                   
+                })
+                ->addColumn('full_name', function ($user) {
+                    return "$user->name $user->last_name";
+                })
+                ->addColumn('newsletter', function ($user) {
 
-                return $user->newsletters()->count();
-            })
-            ->addColumn('action' , function(){
+                    return $user->newsletters()->count();
+                })
+                ->addColumn('action', function () {
 
-                return '<p>hello</p>';
-            })
-            ->rawColumns(['action'])
+                    return '<p>hello</p>';
+                })
+                ->rawColumns(['action'])
 
-            ->toJson();
-
+                ->toJson();
         }
 
         $title = 'liste des inscrits';
 
-        return view('dashboard.admin.cruds.inscrit.filter' , compact('title'));
+        return view('dashboard.admin.cruds.inscrit.filter', compact('title'));
     }
 
     /**
