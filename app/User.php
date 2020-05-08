@@ -10,11 +10,11 @@ use Illuminate\Support\Facades\DB;
 class User extends Authenticatable
 {
 
-    const SUBSCRIBE = 1;
-    const UNSUBSCRIBE = 0;
+    const SUBSCRIBE = '1';
+    const UNSUBSCRIBE = '0';
 
-    const ADMIN_ROLE = 1;
-    const CLINET_ROLE = 0;
+    const ADMIN_ROLE = '1';
+    const CLINET_ROLE = '0';
 
     use Notifiable;
 
