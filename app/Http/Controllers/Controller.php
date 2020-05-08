@@ -12,23 +12,22 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
 
-    protected function flashCreatedSuccessfully(){
+    protected function flashCreatedSuccessfully()
+    {
 
-        session()->flash('message' , 'Created successfully!');
-
+        session()->flash('message', 'Created successfully!');
     }
 
 
-    protected function flashUpdatedSuccessfully(){
+    protected function flashUpdatedSuccessfully()
+    {
 
-        session()->flash('message' , 'Updated successfully!');
-
+        session()->flash('message', 'Updated successfully!');
     }
 
-    protected function flashDeletedSuccessfully(){
+    protected function flashDeletedSuccessfully()
+    {
 
-        session()->flash('message' , 'Deleted successfully!');
-
+        session()->flash('message', 'Deleted successfully!');
     }
-
 }
