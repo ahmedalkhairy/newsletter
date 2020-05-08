@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Newsletter;
+use App\User;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
@@ -23,9 +24,21 @@ class NewsletterDataTable extends DataTable
             ->eloquent($query)
             ->addColumn('action', 'dashboard.admin.cruds.newsletter.action')
             ->addColumn('NumberOfMails', function ($newsletter) {
-
                 return $newsletter->mails()->count();
-            });
+            })
+            ->addColumn('subscribes' , function ($newsletter){
+                
+                return $newsletter->query()->whereHas('users' ,function ($query){
+                    
+                    $query->where('newsletter_user.inscription' , User::SUBSCRIBE);
+
+                })->count();
+            } );
+
+
+
+            
+
     }
 
     /**
@@ -63,10 +76,12 @@ class NewsletterDataTable extends DataTable
     {
         return [
 
+
             Column::make('id')->title('ID'),
             Column::make('name'),
-            Column::make('active'),
+            Column::make('active')->title('Status'),
             Column::make('NumberOfMails')->title("Mails"),
+            Column::make('subscribes')->title('Subscripes'),
             Column::make('created_at'),
             Column::make('updated_at'),
             Column::computed('action')

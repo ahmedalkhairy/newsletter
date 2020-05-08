@@ -18,8 +18,6 @@ class UserController extends Controller
     {
 
 
-        
-
         if (request()->ajax()) {
 
             return DataTables::of(User::query())
@@ -38,11 +36,11 @@ class UserController extends Controller
                      * where newsletters.name like request()->name and newsletter_user.inscription = 1
                      * 
                      */
-                    if (request()->name) {
+                    if (request()->input('name')) {
 
                         $query->whereHas('newsletters', function ($query) {
 
-                            $query->where('name', 'LIKE', '%' . request()->name . '%')
+                            $query->where('name', 'LIKE', '%' . request()->input('name') . '%')
 
                                 ->where('newsletter_user.inscription', User::SUBSCRIBE);
                         });
@@ -55,9 +53,27 @@ class UserController extends Controller
                      * from users 
                      * where users.email like '% request->email %'
                      */
-                    if (request()->email) {
+                    if (request()->input('email')) {
 
-                        $query->orWhere('email',  'LIKE', '%' . request()->email . '%');
+                        $query->orWhere('email',  'LIKE', '%' . request()->input('email') . '%');
+                    }
+
+
+                    /**
+                     *  newsletters    newsletter_user     users 
+                     *  
+                     * 
+                     */
+                    if(request()->input('date')){
+
+                        $query->orWhereHas('newsletters' ,function($query){
+
+                            $query->whereDate('newsletter_user.updated_at' , request()->input('date'))
+                                  ->where('newsletter_user.inscription', User::SUBSCRIBE);
+
+
+                        });
+
                     }
                 })
 

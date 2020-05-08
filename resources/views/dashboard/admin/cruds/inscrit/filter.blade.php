@@ -14,7 +14,7 @@
     <div class="row">
         <div class="col-12 mb-4">
 
-            <div class="col-4 d-inline-block">
+            <div class="col-3 d-inline-block">
                 <label class="label" for="name">Name Newsletter</label>
                 <input class="form-control" type="text" name="name" id="name">
             </div>
@@ -24,6 +24,22 @@
                 <input class="form-control" type="text" name="email" id="email">
             </div>
 
+
+            <div class="col-4 d-inline-block ">
+                <label class="label" for="email">Date of subscripe</label>
+                <input class="form-control  datetimepicker-input" type="date" name="date" id="date">
+            </div>
+
+
+            {{-- <div class="form-group">
+                <label>Date:</label>
+                  <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                      <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate">
+                      <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                      </div>
+                  </div>
+              </div> --}}
         </div>
     </div>
 
@@ -40,13 +56,12 @@
                             aria-label="Browser: activate to sort column ascending">Name</th>
                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                             aria-label="Platform(s): activate to sort column ascending">Email</th>
-                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                             aria-label="Engine version: activate to sort column ascending">Newsletter</th>
                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                             aria-label="Engine version: activate to sort column ascending">Created at</th>
                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                             aria-label="CSS grade: activate to sort column ascending">Updated at</th>
-
                         <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                             aria-label="CSS grade: activate to sort column ascending">Action</th>
                     </tr>
@@ -64,37 +79,42 @@
 
 @push('js')
 
+
+<script src="/plugins/daterangepicker/daterangepicker.js"></script>
+
+
 <script>
     $(document).ready( function () {
 
 
-    fetchData();
+        fetchData();
 
-    function fetchData(){
+        function fetchData(){
 
-    $('#users-table').DataTable({
-        processing: true,
-           serverSide: true,
-           searching: false,
-           ajax: {
-               url: "{{ route('users.index') }}",
-               data:{
-                   //$ symoblic for jQuery
-                   name: $('#name').val(),
-                   email : $('#email').val()
-               }
-           },
-           columns: [
-                    { data: 'id', name: 'id' },
-                    { data: 'full_name', name: 'full_name' },
-                    { data: 'email', name: 'email' },
-                    { data: 'newsletter', name: 'newsletter' },
-                    { data: 'created_at', name: 'created_at' },
-                    { data: 'updated_at', name: 'updated_at' },
-                    { data: 'action', name: 'action' }
-                 ]
-        });
-    }
+        $('#users-table').DataTable({
+            processing: true,
+            serverSide: true,
+            searching: false,
+            ajax: {
+                url: "{{ route('users.index') }}",
+                data:{
+                    //$ symoblic for jQuery
+                    name  : $('#name').val(),
+                    email : $('#email').val(),
+                    date  : $('#date').val()
+                }
+            },
+            columns: [
+                        { data: 'id', name: 'id' },
+                        { data: 'full_name', name: 'full_name' },
+                        { data: 'email', name: 'email' },
+                        { data: 'newsletter', name: 'newsletter' },
+                        { data: 'created_at', name: 'created_at' },
+                        { data: 'updated_at', name: 'updated_at' },
+                        { data: 'action', name: 'action' }
+                    ]
+            });
+        }
 
 
          $('#name').keyup(function(){
@@ -103,6 +123,12 @@
             
          });
 
+
+         $('#date').change(function(){
+
+            refrechDatatable();    
+
+         });
 
 
          $('#email').keyup(function(){
