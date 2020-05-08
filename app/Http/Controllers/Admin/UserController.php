@@ -14,13 +14,23 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
 
         if(request()->ajax()){
 
             return DataTables::of(User::query())
 
+            ->filter(function($query){
+
+                $query->whereHas('newsletters' , function($query){
+
+                    $query->where('name' , 'like' , "%".request()->name. "%");
+                    
+                });
+
+
+            })
             ->addColumn('full_name' , function($user){
                 return "$user->name $user->last_name";
             })
@@ -28,6 +38,12 @@ class UserController extends Controller
 
                 return $user->newsletters()->count();
             })
+            ->addColumn('action' , function(){
+
+                return '<p>hello</p>';
+            })
+            ->rawColumns(['action'])
+
             ->toJson();
 
         }

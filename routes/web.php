@@ -34,7 +34,6 @@ Route::get('/logout', function () {
 Route::middleware(['auth'])->group(function () {
 
 
-
     //for user profile
     Route::patch('users/profile', 'UserProfileController@update')->name('profile.update');
 
@@ -69,7 +68,7 @@ Route::middleware(['auth'])->group(function () {
 
 
         Route::put('{newsletter}/subscribe', 'SubscribtionController@subscribe')->name('subscribe');
-        
+
         Route::put('{newsletter}/unsubscribe', 'SubscribtionController@unsubscribe')->name('unsubscribe');
 
     });

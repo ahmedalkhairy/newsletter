@@ -9,6 +9,7 @@ use App\Newsletter;
 use App\Http\Requests\Newsletter\UpdateRequest;
 use App\Http\Requests\Newsletter\StoreRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Request;
 use Yajra\DataTables\DataTables;
 
 class NewsletterController extends Controller
@@ -20,6 +21,8 @@ class NewsletterController extends Controller
      */
     public function index(NewsletterDataTable $datatable)
     {
+
+
 
         $title = "Liste des newsletters";
 

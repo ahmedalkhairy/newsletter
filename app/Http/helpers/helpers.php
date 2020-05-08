@@ -2,7 +2,22 @@
 
 use Illuminate\Support\Facades\Request;
 
-function openAsideMenuElement($segment)
+function openAsideMenuElement($menuElement , $active = null)
 {
-    return  Request::segment(1) == $segment ? " kt-menu__item--open" : "";
+    $class =  $active == null  ?  "menu-open":"active" ;
+
+    return  Request::segment(1) == $menuElement ? $class : "";
+}
+
+
+function activeAsideMenuSubElement($menuElement , $menuSubElement = 'lister')
+{
+
+    if($menuSubElement=='lister'){
+
+        return   (Request::segment(2) == null AND   Request::segment(1) == $menuElement) ? "active" : "";
+    }
+
+
+    return ((Request::segment(2) == $menuSubElement) AND Request::segment(1) == $menuElement ) ? "active" : "";
 }
