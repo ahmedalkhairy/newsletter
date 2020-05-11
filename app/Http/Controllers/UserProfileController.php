@@ -26,7 +26,7 @@ class UserProfileController extends Controller
       
         $this->flashUpdatedSuccessfully();
         
-        return redirect()->route('profile.show');
+        return redirect()->route('profile.show',['user'=>auth()->id()]);
     
     }
 
