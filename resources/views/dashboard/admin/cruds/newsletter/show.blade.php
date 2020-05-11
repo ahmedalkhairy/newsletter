@@ -58,49 +58,61 @@
                 </div>
 
 
+
+                <div class="mt-3">
+                    <div class="d-inline-block m-2">
+                    <a href="{{  route('newsletters.users' , ['newsletter'=>$newsletter->id]) }}" class="btn btn-outline-primary note-btn-primary">Show Users</a>
+                    </div>
+
+                    <div class="d-inline-block m-2">
+                        <a href="{{ route('newsletters.mails' , ['newsletter'=>$newsletter->id]) }}" class="btn btn-outline-primary note-btn-primary">Show mails</a>
+                    </div>
+
+                </div>
+
             </div>
             <!-- /.col -->
         </div>
         <!-- /.row -->
 
         <!-- Table row -->
-        <div class="row mt-3">
+        {{-- <div class="row mt-3">
 
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">{{$tableTitle}}</h3>
-                    </div>
-                    <!-- /.card-header -->
-                    <div class="card-body">
-                        <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    {!! $dataTable->table([
-                                    'class'=>'table table-bordered table-hover dataTable dtr-inline'
-                                    ]) !!}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+            <div class="row">
+                <div class="col-sm-12">
+                    {!! $dataTable->table([
+                    'class'=>'table table-bordered table-hover dataTable dtr-inline'
+                    ]) !!}
                 </div>
             </div>
         </div>
     </div>
+
+</div>
+</div>
+</div> --}}
+</div>
 </div>
 
 </div>
 @endsection
 
 @push('js')
-{!! $dataTable->scripts()!!}
-
+{{-- {!! $dataTable->scripts()!!} --}}
+{{-- 
 <script src= "{{ asset('js/functions.js') }} "></script>
 
 
 <script>
-
-confirmMessage('newslettermails-table');
+    confirmMessage('newslettermails-table');
    
-</script>
+</script> --}}
 @endpush

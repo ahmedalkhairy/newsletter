@@ -58,7 +58,7 @@ class NewsletterMailsDataTable extends DataTable
                     ->setTableId('newslettermails-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    ->dom('lBfrtip')
+                    ->dom('liprtip')
                     ->orderBy(1);
 
     }

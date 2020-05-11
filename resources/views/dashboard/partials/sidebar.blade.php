@@ -12,9 +12,10 @@
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
           {{-- <img src="{{asset('storage/imgs/'.Auth::user()->picture_url)}}" class="img-circle elevation-2" alt="User Image"> --}}
+        <img src="{{asset(auth()->user()->picture_url)}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          {{-- <a href="{{route('profile.show',Auth::user())}}" class="d-block"> {{Auth::user()->name}} {{Auth::user()->last_name}}</a> --}}
+          <a href="{{ route('profile.show' , ['user'=>auth()->id()]) }}" class="d-block"> {{ auth()->user()->name }} {{ auth()->user()->last_name}}</a>
         </div>
       </div>
 

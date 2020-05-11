@@ -1,28 +1,29 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\user;
 
 use App\Http\Requests\UserProfile\ValidateRequest;
+use App\User;
+use Illuminate\Support\Facades\File;
 
 class UserProfileController extends Controller
 {
 
-    public function update(ValidateRequest $validateRequest, User $user)
-    {
-        $validateRequest->date =  date('Y - m - d', $validateRequest->date);
+    public function update(ValidateRequest $validateRequest)
+    {   
 
-        auth()->user()->update($validateRequest->all());
+
+        auth()->user()->update($validateRequest->except('picture_url'));
+
 
         if($validateRequest->hasFile('picture_url')){
-            $fileWithExt=$validateRequest->file('picture_url')->getClientOriginalName();
-            $fileWithoutExt=pathinfo($fileWithExt,PATHINFO_FILENAME);
-            $fileExt=$validateRequest->file('picture_url')->getClientOriginalExtension();
-            $fileNewName=$fileWithoutExt.'_'.time().'.'.$fileExt;
-            $path=$validateRequest->file('picture_url')->storeAs('app/public/imgs',$fileNewName);
-            // Storage::delete('public/imgs/'.$data->imgx);
-            $user->picture_url=$fileNewName;
+
+            auth()->user()->update([
+                'picture_url' => $validateRequest->file('picture_url')->store('images' , 'public')
+            ]);
+
         }
+      
         $this->flashUpdatedSuccessfully();
         
         return redirect()->route('profile.show');

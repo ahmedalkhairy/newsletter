@@ -24,7 +24,7 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'type'=>"required|unique:types,type,$this->type->id,id"
+            'type'=>"string|max:191|required|unique:types,type,$this->type->id,id"
         ];
     }
 }

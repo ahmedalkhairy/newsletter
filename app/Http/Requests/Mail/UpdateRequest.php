@@ -24,7 +24,7 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|unique:mails,title,'.$this->mail->id.',id',
+            'title' => 'string|max:191|required|unique:mails,title,'.$this->mail->id.',id',
             'content' => 'required',
             'newsletter_id' => 'required|exists:newsletters,id'
         ];

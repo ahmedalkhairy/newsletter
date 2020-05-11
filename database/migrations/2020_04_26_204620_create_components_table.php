@@ -16,7 +16,7 @@ class CreateComponentsTable extends Migration
         Schema::create('components', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('type_id');
-            $table->string('content');
+            $table->longText('content');
             $table->foreign('type_id')->references('id')->on('types');
             $table->timestamps();
         });

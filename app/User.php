@@ -70,6 +70,13 @@ class User extends Authenticatable
         return $this->role == User::CLINET_ROLE;
     }
 
+
+    public function getPictureUrlAttribute($picture_url)
+    {
+
+        return "/storage/imgs/$picture_url";
+    }
+
     public function newsletters()
     {
         return $this->belongsToMany(Newsletter::class)->withPivot(['inscription'])->withTimestamps();

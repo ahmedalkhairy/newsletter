@@ -69,7 +69,7 @@ function activeToggle()
 
                         type: 'PUT',
 
-                        url: `${ newsletter_id }/activate`,
+                        url: `newsletters/${ newsletter_id }/activate`,
                         success: function (data)
                         {
 
@@ -88,7 +88,7 @@ function activeToggle()
 
                         type: 'PUT',
 
-                        url: `${ newsletter_id }/deactivate`,
+                        url: `newsletters/${ newsletter_id }/deactivate`,
 
                         success: function (data)
                         {

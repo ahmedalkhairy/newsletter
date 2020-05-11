@@ -4,7 +4,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\File;
+use App\User;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,11 +17,13 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+
 Route::get('/', function () {
 
     return view('welcome');
 
 });
+
 
 
 Route::get('/logout', function () {
@@ -39,17 +42,24 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('users/profile/edit', 'UserProfileController@edit')->name('profile.edit');
 
-    Route::get('users/profile', 'UserProfileController@show')->name('profile.show');
+    Route::get('users/{user}/profile', 'UserProfileController@show')->name('profile.show');
 
 
     Route::middleware(['admin'])->namespace('Admin')->group(function () {
 
+        Route::get('users/{user}/newsletters' , 'UserController@showNewsletters')->name('users.newsletters');
+
+        Route::delete('users/{user}' , 'UserController@destroy')->name('users.destroy');
 
         Route::get('users/filter' , 'UserController@index')->name('users.index');
 
-        Route::put('{newsletter}/activate'   , 'NewsletterController@activate');
+        Route::put('newsletters/{newsletter}/activate'   , 'NewsletterController@activate');
 
-        Route::put('{newsletter}/deactivate' ,'NewsletterController@deactivate');
+        Route::put('newsletters/{newsletter}/deactivate' ,'NewsletterController@deactivate');
+        
+        Route::get('newsletters/{newsletter}/mails' , 'NewsletterController@getMails')->name('newsletters.mails');
+
+        Route::get('newsletters/{newsletter}/users' , 'NewsletterController@getUsers')->name('newsletters.users');
 
         Route::resource('newsletters', 'NewsletterController')->except('delete');
 

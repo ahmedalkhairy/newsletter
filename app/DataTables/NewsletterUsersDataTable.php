@@ -2,17 +2,18 @@
 
 namespace App\DataTables;
 
-use App\Newsletter;
 use App\User;
-use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class NewsletterDataTable extends DataTable
+class NewsletterUsersDataTable extends DataTable
 {
+
+    private $newsletter_id;
+
     /**
      * Build DataTable class.
      *
@@ -23,28 +24,36 @@ class NewsletterDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'dashboard.admin.cruds.newsletter.action')
-            ->addColumn('NumberOfMails', function ($newsletter) {
-                return $newsletter->mails()->count();
+            ->addColumn('action', 'dashboard.admin.cruds.inscrit.action')
+            ->addColumn('full_name' ,function ($user){
+                
+                return "$user->name $user->last_name";
             })
-            ->addColumn('subscribes', function ($newsletter) {
-
-                return  DB::table('newsletter_user')
-                    ->select([DB::raw('COUNT(*)')])
-                    ->where('newsletter_id', $newsletter->id)
-                    ->where('inscription', User::SUBSCRIBE)->get()->first()->{'COUNT(*)'};
-            });
-    }
+            ->addColumn('image' ,'dashboard.admin.cruds.inscrit.image')
+            ->rawColumns([ 'action' , 'image']);
+        }   
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Newsletter $model
+     * @param \App\User $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Newsletter $model)
+    public function query(User $model)
     {
-        return $model->newQuery();
+        return $model->newQuery()->whereHas('newsletters', function ($query) {
+
+            $query->where('newsletter_user.inscription', User::SUBSCRIBE)
+            
+            ->where('newsletter_id' , $this->newsletter_id);
+        });
+    }
+
+    public function setNewsletterId($newsletter_id)
+    {
+        $this->newsletter_id = $newsletter_id;
+
+        return $this;
     }
 
     /**
@@ -55,12 +64,13 @@ class NewsletterDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-            ->setTableId('newsletter-table')
+            ->setTableId('newsletterusers-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
-            ->dom('lBfrtip')
+            ->dom('liprtip')
             ->orderBy(1);
     }
+
     /**
      * Get columns.
      *
@@ -69,20 +79,19 @@ class NewsletterDataTable extends DataTable
     protected function getColumns()
     {
         return [
-
-
-            Column::make('id')->title('ID'),
-            Column::make('name'),
-            Column::make('active')->title('Status'),
-            Column::make('NumberOfMails')->title("Mails"),
-            Column::make('subscribes')->title('Subscripes'),
+            Column::make('id'),
+            Column::make('image'),
+            Column::make('full_name'),
+            Column::make('dob'),
+            Column::make('email'),
             Column::make('created_at'),
             Column::make('updated_at'),
             Column::computed('action')
-                ->exportable(false)
-                ->printable(false)
-                ->addClass('text-center')
-
+            ->exportable(false)
+            ->printable(false)
+            ->width(60)
+            ->addClass('text-center')
+        
         ];
     }
 
@@ -93,6 +102,6 @@ class NewsletterDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'Newsletter_' . date('YmdHis');
+        return 'NewsletterUsers_' . date('YmdHis');
     }
 }

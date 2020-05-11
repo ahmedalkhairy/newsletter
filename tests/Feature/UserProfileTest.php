@@ -48,7 +48,7 @@ class UserProfileTest extends TestCase
     {
         //acting as a user a loggin user
         $userLoggin = $this->actingAs(factory(User::class)->create());
-
+        
         $response = $userLoggin->patch('users/profile', [
 
             'name' => '',

@@ -4,13 +4,12 @@
 
 use App\Newsletter;
 use Faker\Generator as Faker;
-
 $factory->define(Newsletter::class, function (Faker $faker) {
     return [
         'name' => $faker->unique()->name,
 
         'description' => $faker->text(),
         
-        'active' => random_int(0, 1),
+        'active' => strval(random_int(0, 1)),
     ];
 });

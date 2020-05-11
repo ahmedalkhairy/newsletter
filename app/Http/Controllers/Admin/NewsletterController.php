@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\NewsletterDataTable;
 use App\DataTables\NewsletterMailsDataTable;
+use App\DataTables\NewsletterUsersDataTable;
 use App\Newsletter;
 use App\Http\Requests\Newsletter\UpdateRequest;
 use App\Http\Requests\Newsletter\StoreRequest;
@@ -27,7 +28,7 @@ class NewsletterController extends Controller
         $title = "Liste des newsletters";
 
 
-        return $datatable->render('dashboard.admin.cruds.index' , compact('title'));
+        return $datatable->render('dashboard.admin.cruds.index', compact('title'));
 
         // return view('dashboard.cruds.newsletter.index' , compact('title'));
     }
@@ -42,7 +43,7 @@ class NewsletterController extends Controller
 
         $title = "Ajouter une newsletter";
 
-        return view('dashboard.admin.cruds.newsletter.create' , compact('title' , 'newsletter'));
+        return view('dashboard.admin.cruds.newsletter.create', compact('title', 'newsletter'));
     }
 
     /**
@@ -67,14 +68,14 @@ class NewsletterController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function show(Newsletter $newsletter , NewsletterMailsDataTable $newsletterMailsDataTable)
+    public function show(Newsletter $newsletter)
     {
 
         $title = "Newsletter Page";
 
-        $tableTitle = "Mails Table";
+        
 
-        return $newsletterMailsDataTable->setNewsletterId($newsletter->id)->render('dashboard.admin.cruds.newsletter.show' ,compact('newsletter', 'title' , 'tableTitle'));
+        return view('dashboard.admin.cruds.newsletter.show', compact('newsletter', 'title'));
     }
 
     /**
@@ -124,7 +125,7 @@ class NewsletterController extends Controller
 
     public function activate(Newsletter $newsletter)
     {
-        if(request()->ajax()){
+        if (request()->ajax()) {
 
             $newsletter->update([
 
@@ -132,20 +133,20 @@ class NewsletterController extends Controller
             ]);
 
 
-            return response()->json(['message'=>'Newsletter est activée']);
+            return response()->json(['message' => 'Newsletter est activée']);
         }
     }
 
     public function deactivate(Newsletter $newsletter)
     {
-        if(request()->ajax()){
+        if (request()->ajax()) {
 
             $newsletter->update([
 
                 'active' => Newsletter::INACTIVE
             ]);
 
-            return response()->json(['message'=>'Newsletter est désactivé']);
+            return response()->json(['message' => 'Newsletter est désactivé']);
         }
     }
 
@@ -159,17 +160,37 @@ class NewsletterController extends Controller
             $newsletter->update([
                 'active' => "1"
             ]);
-
         } else {
 
             $newsletter->update([
                 'active' => "0"
             ]);
-
         }
 
         $this->flashUpdatedSuccessfully();
 
         return redirect()->back();
+    }
+
+    public function getMails(Newsletter $newsletter, NewsletterMailsDataTable $newsletterMailsDataTable)
+    {
+
+        $tableTitle = "Mails Table";
+
+        $title = 'Newsletter mails';
+
+        return $newsletterMailsDataTable->setNewsletterId($newsletter->id)
+               ->render('dashboard.admin.cruds.index', compact('newsletter', 'title', 'tableTitle'));
+    }
+
+    public function getUsers(Newsletter $newsletter , NewsletterUsersDataTable $newsletterUsersDataTable)
+    {
+
+        $tableTitle = "Users Table";
+
+        $title = 'Newsletter users';
+
+        return $newsletterUsersDataTable->setNewsletterId($newsletter->id)
+               ->render('dashboard.admin.cruds.index', compact('newsletter', 'title', 'tableTitle'));
     }
 }

@@ -26,7 +26,7 @@ class UpdateRequest extends FormRequest
 
 
         return [
-            'name'=>"required|unique:newsletters,name,{$this->newsletter->id},id",
+            'name'=>"string|max:255|required|unique:newsletters,name,{$this->newsletter->id},id",
             'description'=>'required',
             'active'=>'required|numeric||min:0|max:1'
         ];

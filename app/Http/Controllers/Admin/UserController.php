@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\DataTables\UserNewslettersDataTable;
 use App\Http\Controllers\Controller;
+use App\Newsletter;
 use App\User;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
@@ -100,6 +102,16 @@ class UserController extends Controller
         return view('dashboard.admin.cruds.inscrit.filter', compact('title'));
     }
 
+
+
+    public function showNewsletters(User $user , UserNewslettersDataTable $userNewslettersDataTable)
+    {
+
+        $title = "Newsletters of user";
+
+        return $userNewslettersDataTable->setUserId($user->idn_to_ascii)-> render('dashboard.admin.cruds.index', compact('title'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -158,11 +170,16 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+
+        $user->delete();
+
+        $this->flashDeletedSuccessfully();
+
+        return redirect()->back();
     }
 }

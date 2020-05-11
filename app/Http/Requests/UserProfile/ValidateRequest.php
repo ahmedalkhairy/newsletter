@@ -24,11 +24,11 @@ class ValidateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'last_name' => 'required',
-           // 'picture_url' => 'required',
+            'name' => 'required|string|max:191',
+            'last_name' => 'required|string|max:191',
+            'picture_url' => 'sometimes|required|file|image|max:2048',
             'dob' => 'required|date',
-            'email' => 'required|email',
+            'email' => 'required|email|string|max:191',
         ];
     }
 }

@@ -113,6 +113,6 @@ class MailController extends Controller
 
         $this->flashDeletedSuccessfully();
 
-        return redirect()->route('mails.index');
+        return redirect()->back();
     }
 }
