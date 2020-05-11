@@ -29,6 +29,9 @@ class NewsletterManagementTest extends TestCase
 
         $this->assertCount(1, Newsletter::all());
 
+
+        $this->assertDatabaseHas('newsletters' , ['name'=>'News']);
+
         $this->assertEquals('News', NewsLetter::first()->name);
         
 

@@ -30,4 +30,10 @@ class Controller extends BaseController
 
         session()->flash('message', 'Deleted successfully!');
     }
+
+    protected function flashErrorMessage($message='Error Message')
+    {
+        session()->flash('error', $message);
+    }
+
 }

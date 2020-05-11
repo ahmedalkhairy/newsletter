@@ -35,6 +35,13 @@ class MailController extends Controller
 
         $newsletters = Newsletter::all();
 
+        if($newsletters->isEmpty()){
+
+
+            $this->flashErrorMessage('Il faut ajouter une newsletter');
+
+            return redirect()->route('newsletters.create');                
+        }
 
         return view('dashboard.admin.cruds.mail.create' , compact('title','newsletters' , 'mail'));
     }
