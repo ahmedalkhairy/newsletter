@@ -28,15 +28,15 @@ class UserController extends Controller
 
                     /**
                      *  select users.id , users.name , users.email , users.dob , users.role
-                     *  
+                     *
                      * from users
-                     * 
-                     * inner join newsletter_user on users.id = newsletter_user.id 
-                     * 
-                     * inner join newsletters on newsletter_user.newsletter_id = newsletters.id 
-                     * 
+                     *
+                     * inner join newsletter_user on users.id = newsletter_user.id
+                     *
+                     * inner join newsletters on newsletter_user.newsletter_id = newsletters.id
+                     *
                      * where newsletters.name like request()->name and newsletter_user.inscription = 1
-                     * 
+                     *
                      */
                     if (request()->input('name')) {
 
@@ -52,7 +52,7 @@ class UserController extends Controller
 
                     /**
                      * select users.id , users.name , users.email , users.dob , users.role
-                     * from users 
+                     * from users
                      * where users.email like '% request->email %'
                      */
                     if (request()->input('email')) {
@@ -62,9 +62,9 @@ class UserController extends Controller
 
 
                     /**
-                     *  newsletters    newsletter_user     users 
-                     *  
-                     * 
+                     *  newsletters    newsletter_user     users
+                     *
+                     *
                      */
                     if(request()->input('date')){
 
@@ -88,10 +88,8 @@ class UserController extends Controller
                     return $user->newsletters()->where('newsletter_user.inscription' , User::SUBSCRIBE)->count();
                 })
 
-                ->addColumn('action', function () {
-
-                    return '<p>hello</p>';
-                })
+                ->addColumn('action', 'dashboard.admin.cruds.inscrit.action'
+                )
                 ->rawColumns(['action'])
 
                 ->toJson();

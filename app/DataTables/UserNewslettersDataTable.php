@@ -25,7 +25,7 @@ class UserNewslettersDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'usernewsletters.action');
+            ->addColumn('action', 'dashboard.admin.cruds.newsletter.action');
     }
 
     public function setUserId($userId)
@@ -57,7 +57,7 @@ class UserNewslettersDataTable extends DataTable
                     ->setTableId('usernewsletters-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    ->dom('Bfrtip')
+                    ->dom('liprtip')
                     ->orderBy(1);
 
     }
@@ -70,14 +70,17 @@ class UserNewslettersDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
+
             Column::make('id'),
+            Column::make('name'),
+            Column::make('active')->title('Status'),
             Column::make('created_at'),
             Column::make('updated_at'),
+            Column::computed('action')
+                ->exportable(false)
+                ->printable(false)
+                ->width(60)
+                ->addClass('text-center'),
         ];
     }
 
