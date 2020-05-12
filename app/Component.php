@@ -13,10 +13,10 @@ class Component extends Model
         return route('components.show', ['component' => $this->id]);
     }
 
-    
-    public function type()
+
+    public function input_type()
     {
 
-        return $this->belongsTo(Type::class);
+        return $this->belongsTo(Type::class,'type_id','id');
     }
 }

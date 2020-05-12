@@ -19,7 +19,7 @@
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
 
-            <div class="container">
+            <div class="container" >
                 @yield('content')
             </div>
         </div>
@@ -33,3 +33,5 @@
 
         <!-- Main Footer -->
         @include('dashboard.partials.footer')
+
+

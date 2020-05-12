@@ -18,4 +18,9 @@ class Mail extends Model
         return $this->belongsTo(Newsletter::class);
     }
 
+    public function components()
+    {
+        return $this->hasMany(Component::class);
+    }
+
 }

@@ -16,7 +16,7 @@ class StoreRequest extends FormRequest
         return true;
     }
 
-    
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -26,7 +26,8 @@ class StoreRequest extends FormRequest
     {
         return [
             'title' => "string|max:191|required|unique:mails,title",
-            'content' => "required",
+//            'content' => "required",
+         //   'type_id' => "required",
             'newsletter_id' => "required|exists:newsletters,id"
         ];
     }

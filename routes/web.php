@@ -56,7 +56,7 @@ Route::middleware(['auth'])->group(function () {
         Route::put('newsletters/{newsletter}/activate'   , 'NewsletterController@activate');
 
         Route::put('newsletters/{newsletter}/deactivate' ,'NewsletterController@deactivate');
-        
+
         Route::get('newsletters/{newsletter}/mails' , 'NewsletterController@getMails')->name('newsletters.mails');
 
         Route::get('newsletters/{newsletter}/users' , 'NewsletterController@getUsers')->name('newsletters.users');
@@ -67,6 +67,7 @@ Route::middleware(['auth'])->group(function () {
         Route::patch('newsletters/{newsletter}/active', ['uses' => 'NewsletterController@changeStatus', 'as' => 'newsletters.changeStatus']);
 
         Route::resource('mails', 'MailController');
+        Route::post('mails/{id}/components', 'MailController@update_components')->name('mails.update.components');
 
         Route::resource('components', 'ComponentController');
 

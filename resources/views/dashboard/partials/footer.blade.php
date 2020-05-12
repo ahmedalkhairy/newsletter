@@ -95,6 +95,9 @@ toastr.options = {
 
 
 @stack('js')
+
+
+
 </body>
 
 </html>
